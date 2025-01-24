@@ -4386,7 +4386,7 @@ __cleanup:
 
 	Com_Memset( &vk, 0, sizeof( vk ) );
 	Com_Memset( &vk_world, 0, sizeof( vk_world ) );
-	
+
 	if ( code != REF_KEEP_CONTEXT ) {
 		vk_destroy_instance();
 		deinit_instance_functions();
@@ -4700,7 +4700,7 @@ void vk_upload_image_data( image_t *image, int x, int y, int width, int height, 
 
 	record_image_layout_transition( staging_command_buffer, image->handle, VK_IMAGE_ASPECT_COLOR_BIT, VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL, VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL );
 
-	// flush_staging_command_buffer(); // uncomment for old single-image sync behavior
+	flush_staging_command_buffer(); // uncomment for old single-image sync behavior
 
 	if ( buf != pixels ) {
 		ri.Hunk_FreeTempMemory( buf );
